@@ -25,6 +25,7 @@ from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 from pytgcalls import GroupCall
 import ffmpeg
+import *
 
 group_call = GroupCall(None, path_to_log_file='')
 playlist = []
@@ -108,7 +109,7 @@ async def playout_ended_handler(group_call, filename):
 # - Pyrogram handlers
 
 
-@Client.on_message(main_filter & current_vc & filters.regex("^(\\/|!)play$"))
+@bot.on_message(main_filter & current_vc & filters.regex("^(\\/|!)play$"))
 @init_client_for_group_call
 async def play_track(client, m: Message):
     # show playlist
