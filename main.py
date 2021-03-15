@@ -1,12 +1,13 @@
 from os import environ
 # import logging
-from pyrogram import Client, idle
+from pyrogram import idle
+from pyrogram import Client as bot
 
-api_id = int(environ["API_ID"])
-api_hash = environ["API_HASH"]
-session_name = environ["SESSION_NAME"]
+API_ID = int(environ["API_ID"])
+API_HASH = environ["API_HASH"]
+bot_token = environ["BOT_TOKEN"]
 
-plugins = dict(
+Plugins = dict(
     root="plugins",
     include=[
         "vc.player",
@@ -14,11 +15,13 @@ plugins = dict(
         "sysinfo"
     ]
 )
+bot = Bot(
+    ":memory:",
+    API_ID,
+    API_HASH,
+    bot_token=BOT_TOKEN,
+    plugins=Plugins
+)
 
-app = Client(session_name, api_id, api_hash, plugins=plugins)
-# logging.basicConfig(level=logging.INFO)
-app.start()
-print('>>> USERBOT STARTED')
-idle()
-app.stop()
-print('\n>>> USERBOT STOPPED')
+bot.start()
+run()
